@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Bancada 4.0</title>
+    <link rel="stylesheet" href="css/lab-digital.css">
+</head>
+<body>
+
+    <header>
+        <div id="logo">
+            <img src="imagens/camili.png" alt="Logomarca" id="system">
+        </div>
+        <h1 class="titulo">Lab Digital: Monitoramento Bancada Industrial 4.0</h1>
+    </header>
+
+    <main>
+        <section id="status-geral">
+            <h2>Status Operacional</h2>
+            <div class="status-indicator">
+                <p>Bancada:</p>
+                <span class="status-value" data-id="bancada-status">Ocioso</span> 
+            </div>
+            <div class="status-indicator">
+                <p>Processo:</p>
+                <span class="status-value" data-id="processo-status">Trabalhando</span>
+            </div>
+            <div class="status-indicator">
+                <p>Montagem:</p>
+                <span class="status-value" data-id="montagem-status">Ocioso</span>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="estoque">
+            <h2>Estoque (28 Posições)</h2>
+            <div class="dados-ambiente">
+                <h3>Monitoramento Ambiental - ESTOQUE</h3>
+                <p>Temp: <span class="temp-value" data-modulo="estoque">25.5°C</span></p> 
+                <p>Umid: <span class="umid-value" data-modulo="estoque">60%</span></p>
+            </div>
+            <div class="grid-estoque">
+                <div class="posicao vermelho" data-pos="1">V1</div>
+                <div class="posicao azul" data-pos="2">A1</div>
+                <div class="posicao preto" data-pos="3">P1</div>
+                <div class="posicao vazio" data-pos="4">--</div>
+                <div class="posicao vermelho" data-pos="5">V5</div>
+                <div class="posicao azul" data-pos="6">A6</div>
+                <div class="posicao preto" data-pos="7">P7</div>
+                <div class="posicao vazio" data-pos="8">--</div>
+                <div class="posicao vermelho" data-pos="9">V9</div>
+                <div class="posicao azul" data-pos="10">A10</div>
+                <div class="posicao preto" data-pos="11">P11</div>
+                <div class="posicao vazio" data-pos="12">--</div>
+                <div class="posicao vermelho" data-pos="13">V13</div>
+                <div class="posicao azul" data-pos="14">A14</div>
+                <div class="posicao preto" data-pos="15">P15</div>
+                <div class="posicao vazio" data-pos="16">--</div>
+                <div class="posicao vermelho" data-pos="17">V17</div>
+                <div class="posicao azul" data-pos="18">A18</div>
+                <div class="posicao preto" data-pos="19">P19</div>
+                <div class="posicao vazio" data-pos="20">--</div>
+                <div class="posicao vermelho" data-pos="21">V21</div>
+                <div class="posicao azul" data-pos="22">A22</div>
+                <div class="posicao preto" data-pos="23">P23</div>
+                <div class="posicao vazio" data-pos="24">--</div>
+                <div class="posicao vermelho" data-pos="25">V25</div>
+                <div class="posicao azul" data-pos="26">A26</div>
+                <div class="posicao preto" data-pos="27">P27</div>
+                <div class="posicao vazio" data-pos="28">--</div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="processo-detalhes">
+            <h2>Processo - Detalhes</h2>
+            <div class="dados-ambiente">
+                <h3>Monitoramento Ambiental - PROCESSO</h3>
+                <p>Temp: <span class="temp-value" data-modulo="processo">28.1°C</span></p>
+                <p>Umid: <span class="umid-value" data-modulo="processo">55%</span></p>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section id="montagem-detalhes">
+            <h2>Montagem - Detalhes</h2>
+            <div class="dados-ambiente">
+                <h3>Monitoramento Ambiental - MONTAGEM</h3>
+                <p>Temp: <span class="temp-value" data-modulo="montagem">24.0°C</span></p>
+                <p>Umid: <span class="umid-value" data-modulo="montagem">62%</span></p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="expedicao">
+            <h2>Expedição (12 Posições)</h2>
+            <div class="dados-ambiente">
+                <h3>Monitoramento Ambiental - EXPEDIÇÃO</h3>
+                <p>Temp: <span class="temp-value" data-modulo="expedicao">25.0°C</span></p>
+                <p>Umid: <span class="umid-value" data-modulo="expedicao">58%</span></p>
+            </div>
+            <div class="lista-expedicao">
+                <div class="posicao-expedicao" data-pos="1">
+                    <span class="pedido-num">Nº Pedido: 10012</span>
+                    <span class="pedido-status trabalhando">Em Processo</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="2">
+                    <span class="pedido-num">Nº Pedido: 10013</span>
+                    <span class="pedido-status status-finalizado">Finalizado</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="3">
+                    <span class="pedido-num">Nº Pedido: 10014</span>
+                    <span class="pedido-status status-cancelado">Cancelado</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="4">
+                    <span class="pedido-num">Vazio</span>
+                    <span class="pedido-status ocioso">Vago</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="5">
+                    <span class="pedido-num">Nº Pedido: 10016</span>
+                    <span class="pedido-status status-nao-iniciado">Não Iniciado</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="6">
+                    <span class="pedido-num">Nº Pedido: 10017</span>
+                    <span class="pedido-status status-aguardando">Aguardando Módulo</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="7">
+                    <span class="pedido-num">Vazio</span>
+                    <span class="pedido-status ocioso">Vago</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="8">
+                    <span class="pedido-num">Nº Pedido: 10019</span>
+                    <span class="pedido-status trabalhando">Em Processo</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="9">
+                    <span class="pedido-num">Nº Pedido: 10020</span>
+                    <span class="pedido-status status-finalizado">Finalizado</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="10">
+                    <span class="pedido-num">Nº Pedido: 10021</span>
+                    <span class="pedido-status trabalhando">Em Processo</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="11">
+                    <span class="pedido-num">Vazio</span>
+                    <span class="pedido-status ocioso">Vago</span>
+                </div>
+                <div class="posicao-expedicao" data-pos="12">
+                    <span class="pedido-num">Nº Pedido: 10023</span>
+                    <span class="pedido-status status-cancelado">Cancelado</span>
+                </div>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section id="detalhes-pedido" style="display: none; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+            <h2>Detalhes do Pedido Selecionado</h2>
+            <p>Nº: <span id="detalhe-num-pedido">--</span></p>
+            <p>Status Atual: <span id="detalhe-status">--</span></p>
+            <p>Próxima Etapa: <span id="detalhe-etapa">--</span></p>
+        </section>
+                
+    </main>
+
+    <footer>
+        <p>&copy; Projeto Bancada 4.0 | Última Atualização: <span id="data-hora-atualizacao">--</span></p>
+    </footer>
+    
+    <script src="js/lab-digital.js"></script> 
+</body>
+</html>
