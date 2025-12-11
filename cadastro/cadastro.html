@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Lab Digital 4.0</title>
+    <link rel="stylesheet" href="cadastro.css">
+   
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Criar Nova Conta</h2>
+        
+        <form id="cadastro-form">
+            <input type="text" id="nome-cadastro" placeholder="Nome Completo" required>
+            <input type="email" id="email-cadastro" placeholder="Email (será seu login)" required>
+            <input type="date" id="data-nascimento-cadastro" required>
+            <input type="password" id="senha-cadastro" placeholder="Senha" required>
+            <select id="tipo-cadastro" required>
+                <option value="" disabled selected>Selecionar Tipo de Usuário</option>
+                <option value="Professor">Professor</option>
+                <option value="Aluno">Aluno</option>
+            </select>
+            
+            <button type="submit">Cadastrar</button>
+            <p id="cadastro-message" style="margin-top: 15px;"></p>
+        </form>
+
+        <a href="../login/login.html" class="back-link">← Voltar para o Login</a>
+    </div>
+
+    <script src="../js/lab-digital.js"></script>
+</body>
+</html>

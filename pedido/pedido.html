@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Novo Pedido - Lab Digital 4.0</title>
+    
+    <link rel="stylesheet" href="../index/index.css"> 
+    <link rel="stylesheet" href="../pedido/pedido.css"> 
+    
+    </head>
+<body>
+
+    <header class="header-pedido">
+        <h1 class="titulo">Lab Digital: Criação de Pedido Customizado</h1>
+        <a href="index.html" class="back-link-btn">← Voltar para Dashboard</a>
+    </header>
+
+    <main class="pedido-main-content">
+        
+        <div class="pedido-form-container">
+            
+            <div class="progress-bar">
+                <span class="step active" data-step="1">1. Componentes</span>
+                <span class="step" data-step="2">2. Configurações</span>
+                <span class="step" data-step="3">3. Revisão e Envio</span>
+            </div>
+
+            <div class="step-content active" id="step-1">
+                <h2>Selecione os Componentes Principais</h2>
+                <p>Escolha a cor da base e o tipo de material.</p>
+                
+                <div class="options-grid">
+                    <div class="option-card selected" data-option="cor" data-value="vermelho">
+                        <span class="icon-indicator"></span>
+                        <div class="card-visual cor-vermelho"></div>
+                        <h4>Base Vermelha</h4>
+                        <p>Plástico ABS de alta resistência.</p>
+                    </div>
+
+                    <div class="option-card" data-option="cor" data-value="azul">
+                        <span class="icon-indicator"></span>
+                        <div class="card-visual cor-azul"></div>
+                        <h4>Base Azul</h4>
+                        <p>Plástico ABS padrão.</p>
+                    </div>
+                    
+                    </div>
+                <button class="next-step-btn" data-target="2">Próxima Etapa →</button>
+            </div>
+
+            <div class="step-content" id="step-2">
+                <h2>Definir Configurações Operacionais</h2>
+                <label for="velocidade">Velocidade de Processo (RPM):</label>
+                <input type="number" id="velocidade" min="100" max="500" value="300" required>
+                
+                <button class="prev-step-btn" data-target="1">← Voltar</button>
+                <button class="next-step-btn" data-target="3">Próxima Etapa →</button>
+            </div>
+
+            <div class="step-content" id="step-3">
+                <h2>Revisão do Pedido</h2>
+                <div id="review-summary">
+                    <p>Cor da Base: <span id="review-cor">Vermelha</span></p>
+                    <p>Velocidade: <span id="review-velocidade">300 RPM</span></p>
+                </div>
+                <button class="prev-step-btn" data-target="2">← Voltar</button>
+                <button id="submit-pedido-btn" class="submit-btn">Enviar Pedido</button>
+            </div>
+            
+        </div>
+        
+            
+        
+    </main>
+
+    <script src=>"pedido.js"</script> 
+</body>
+</html>

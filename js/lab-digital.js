@@ -1,10 +1,18 @@
 
 
-const USUARIOS_CADASTRADOS = [
-    
-    { email: 'savio@exemplo.com', senha: '123', nome: 'Sávio Zoboli', tipo: 'Professor' },
-    { email: 'aluno@exemplo.com', senha: '123', nome: 'Aluno Teste', tipo: 'Aluno' }
+const USUARIOS_PADRAO = [
+    { email: 'professor@exemplo.com', senha: '123', nome: 'Professor', tipo: 'Professor', data_nascimento: '1985-10-20' },
+    { email: 'aluno@exemplo.com', senha: '123', nome: 'Aluno Teste', tipo: 'Aluno', data_nascimento: '2000-01-01' }
 ];
+
+let USUARIOS_CADASTRADOS = (() => {
+    const salvos = localStorage.getItem('listaUsuarios');
+    if (salvos) {
+        return JSON.parse(salvos);
+    }
+    localStorage.setItem('listaUsuarios', JSON.stringify(USUARIOS_PADRAO));
+    return USUARIOS_PADRAO;
+})();
 
 const DADOS_AMBIENTAIS = {
     estoque: { temp: "26.0°C", umid: "59%" },
@@ -28,23 +36,64 @@ const DETALHES_PEDIDOS = {
 
 
 function handleLogin(event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     const emailInput = document.getElementById('email').value;
     const senhaInput = document.getElementById('senha').value;
-    const messageElement = document.getElementById('login-message');
-
+    
+    const messageElement = document.getElementById('login-message'); 
+    
     const usuario = USUARIOS_CADASTRADOS.find(u => u.email === emailInput && u.senha === senhaInput);
 
     if (usuario) {
-        // Se o usuário existe, salva e redireciona
         localStorage.setItem('usuarioAutenticado', JSON.stringify(usuario));
-        window.location.href = 'dashboard.html'; 
+    
+        if (messageElement) messageElement.textContent = ''; 
+        window.location.href = '../index/index.html'; 
     } else {
-        // Se o login falhar, mostra a mensagem de erro
-        messageElement.textContent = 'Email ou senha incorretos.';
+        if (messageElement) {
+             messageElement.textContent = 'Email ou senha incorretos.';
+             messageElement.style.color = 'red';
+        } else {
+             alert('Email ou senha incorretos.');
+        }
     }
 }
+
+function handleCadastro(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById('nome-cadastro').value;
+    const email = document.getElementById('email-cadastro').value;
+    const data_nascimento = document.getElementById('data-nascimento-cadastro').value;
+    const senha = document.getElementById('senha-cadastro').value;
+    const tipo = document.getElementById('tipo-cadastro').value;
+    const messageElement = document.getElementById('cadastro-message');
+
+    const emailExistente = USUARIOS_CADASTRADOS.find(u => u.email === email);
+    if (emailExistente) {
+        messageElement.textContent = 'Erro: Este email já está cadastrado.';
+        messageElement.style.color = 'red';
+        return;
+    }
+
+    const novoUsuario = { nome, email, senha, tipo, data_nascimento };
+    USUARIOS_CADASTRADOS.push(novoUsuario);
+
+
+    localStorage.setItem('listaUsuarios', JSON.stringify(USUARIOS_CADASTRADOS)); 
+
+    messageElement.textContent = 'Cadastro realizado com sucesso! Redirecionando para o login...';
+    messageElement.style.color = 'green';
+
+    document.getElementById('cadastro-form').reset();
+    
+    setTimeout(() => {
+        window.location.href = 'login.html'; 
+    }, 2000);
+}
+
+
 
 function atualizarVariaveisAmbientais() {
     for (const modulo in DADOS_AMBIENTAIS) {
@@ -99,80 +148,49 @@ function atualizarRodape() {
     }
 }
 
-function verificarAutenticacao() {
-  
-    const usuario = localStorage.getItem('usuarioAutenticado');
-    const isDashboard = window.location.pathname.includes('dashboard.html');
 
+
+function verificarAutenticacao() {
+    const usuario = localStorage.getItem('usuarioAutenticado');
+    const path = window.location.pathname;
+    const isDashboard = path.includes('index.html');
+    const isLoginOrCadastro = path.includes('login.html') || path.includes('cadastro.html');
+
+    
     if (isDashboard && !usuario) {
         window.location.href = 'login.html';
     }
 
-    const isLogin = window.location.pathname.includes('login.html');
-    if (isLogin && usuario) {
-        window.location.href = 'dashboard.html';
+   
+    if (isLoginOrCadastro && usuario) {
+        window.location.href = 'index.html';
     }
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  
-    verificarAutenticacao();
+    
+
+    
     
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
-        
         loginForm.addEventListener('submit', handleLogin);
     }
     
-  
-    const isDashboard = window.location.pathname.includes('dashboard.html');
+    
+    const cadastroForm = document.getElementById('cadastro-form');
+    if (cadastroForm) {
+        cadastroForm.addEventListener('submit', handleCadastro);
+    }
+    
+   
+    const isDashboard = window.location.pathname.includes('index.html');
     if (isDashboard) {
+    
         atualizarRodape();
         atualizarVariaveisAmbientais();
         setupPedidoSelection();
-        
-    
     }
 });
-
-/*document.addEventListener('DOMContentLoaded', () => {
-    const isLoginPage = window.location.pathname.includes('login.html');
-    const loginForm = document.getElementById('login-form');
-    
-   
-    if (isLoginPage && loginForm) {
-        loginForm.addEventListener('submit', handleLogin);
-        return; 
-    }
-    
-   
-    let usuarioObj = null;
-    const usuarioString = localStorage.getItem('usuarioAutenticado');
-    
-    if (usuarioString) {
-        try {
-            usuarioObj = JSON.parse(usuarioString);
-        } catch (e) {
-            console.error("Erro ao carregar usuário logado:", e);
-        }
-    }
-    
   
-    if (!usuarioObj && !isLoginPage) {
-        window.location.href = 'login.html';
-        return;
-    }
-
-    if (document.getElementById('status-geral')) {
-        const nomeUsuario = usuarioObj ? usuarioObj.nome : 'Visitante';
-        console.log(`Bem-vindo, ${nomeUsuario}! Dashboard carregado.`);
-        
-        atualizarVariaveisAmbientais();
-        setupPedidoSelection();
-        atualizarRodape();
-        
-        setInterval(atualizarVariaveisAmbientais, 5000); 
-        setInterval(atualizarRodape, 1000); 
-    }
-});*/
