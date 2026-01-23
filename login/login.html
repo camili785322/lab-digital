@@ -4,34 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Lab Digital 4.0</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../login/login.css">
 </head>
 <body>
 
     <div class="login-container">
-        <h2>Acesso a bancada</h2>
+        <h2>Acesso à Bancada</h2>
         
         <form id="login-form">
-            <div>
-                <label>E-mail</label>
+            <div class="form-group">
+                <label for="email">E-mail</label>
                 <input type="email" id="email" placeholder="Email (ex: aluno@exemplo.com)" required>
             </div>
 
-            <div>
-                <label>Senha</label>
+            <div class="form-group">
+                <label for="senha">Senha</label>
                 <input type="password" id="senha" placeholder="Sua Senha" required>
             </div>
             
-            <p id="login-message" style="margin-top: 10px; color: red; font-weight: bold;"></p>
+            <p id="login-message"></p>
 
             <button type="submit">Entrar</button>
         </form>
         
-        <p style="margin-top: 15px;">
-            Não tem uma conta? <a href="../cadastro/cadastro.html" style="color: #94afcc; text-decoration: none; font-weight: bold;">Cadastre-se aqui</a>
+        <p class="signup-text">
+            Não tem uma conta? <a href="../cadastro/cadastro.html">Cadastre-se aqui</a>
         </p>
     </div>
     
-    <script src="../js/lab-digital.js"></script>
+    <script src="../login/login.js"></script>
 </body>
 </html>

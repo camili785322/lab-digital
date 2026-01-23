@@ -3,178 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Bancada 4.0</title>
-    <link rel="stylesheet" href="../index/index.css">
-    <link rel="stylesheet" href="../pedido/pedido.html">
+    <title>Lab Digital: Monitoramento Bancada Industrial 4.0</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
     <header>
-        <div id="logo">
+        <div id="logo-container">
             <img src="../imagens/camili.png" alt="Logomarca" id="system">
         </div>
         <h1 class="titulo">Lab Digital: Monitoramento Bancada Industrial 4.0</h1>
     </header>
 
-    <main>
-        <section id="status-geral">
-            <h2>Status Operacional</h2>
-            <div class="status-indicator">
-                <p>Bancada:</p>
-                <span class="status-value" data-id="bancada-status">Ocioso</span> 
-            </div>
-            <div class="status-indicator">
-                <p>Processo:</p>
-                <span class="status-value" data-id="processo-status">Trabalhando</span>
-            </div>
-            <div class="status-indicator">
-                <p>Montagem:</p>
-                <span class="status-value" data-id="montagem-status">Ocioso</span>
-            </div>
-        </section>
+    <nav class="acoes-topo">
+        <button class="btn-acao primary" onclick="abrirModalPedido()">Criar Novo Pedido</button>
+        <button class="btn-acao secondary" onclick="abrirModalDetalhes()">Ver Detalhes do Processo</button>
+    </nav>
 
-        <hr>
-
-        <section id="estoque">
-            <h2>Estoque (28 Posições)</h2>
-            <div class="dados-ambiente">
-                <h3>Monitoramento Ambiental - ESTOQUE</h3>
-                <p>Temp: <span class="temp-value" data-modulo="estoque">25.5°C</span></p> 
-                <p>Umid: <span class="umid-value" data-modulo="estoque">60%</span></p>
-            </div>
-            <div class="grid-estoque">
-                <div class="posicao vermelho" data-pos="1">V1</div>
-                <div class="posicao azul" data-pos="2">A1</div>
-                <div class="posicao preto" data-pos="3">P1</div>
-                <div class="posicao vazio" data-pos="4">--</div>
-                <div class="posicao vermelho" data-pos="5">V5</div>
-                <div class="posicao azul" data-pos="6">A6</div>
-                <div class="posicao preto" data-pos="7">P7</div>
-                <div class="posicao vazio" data-pos="8">--</div>
-                <div class="posicao vermelho" data-pos="9">V9</div>
-                <div class="posicao azul" data-pos="10">A10</div>
-                <div class="posicao preto" data-pos="11">P11</div>
-                <div class="posicao vazio" data-pos="12">--</div>
-                <div class="posicao vermelho" data-pos="13">V13</div>
-                <div class="posicao azul" data-pos="14">A14</div>
-                <div class="posicao preto" data-pos="15">P15</div>
-                <div class="posicao vazio" data-pos="16">--</div>
-                <div class="posicao vermelho" data-pos="17">V17</div>
-                <div class="posicao azul" data-pos="18">A18</div>
-                <div class="posicao preto" data-pos="19">P19</div>
-                <div class="posicao vazio" data-pos="20">--</div>
-                <div class="posicao vermelho" data-pos="21">V21</div>
-                <div class="posicao azul" data-pos="22">A22</div>
-                <div class="posicao preto" data-pos="23">P23</div>
-                <div class="posicao vazio" data-pos="24">--</div>
-                <div class="posicao vermelho" data-pos="25">V25</div>
-                <div class="posicao azul" data-pos="26">A26</div>
-                <div class="posicao preto" data-pos="27">P27</div>
-                <div class="posicao vazio" data-pos="28">--</div>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="processo-detalhes">
-            <h2>Processo - Detalhes</h2>
-            <div class="dados-ambiente">
-                <h3>Monitoramento Ambiental - PROCESSO</h3>
-                <p>Temp: <span class="temp-value" data-modulo="processo">28.1°C</span></p>
-                <p>Umid: <span class="umid-value" data-modulo="processo">55%</span></p>
-            </div>
-        </section>
+    <main class="dashboard-container">
         
-        <hr>
-
-        <section id="montagem-detalhes">
-            <h2>Montagem - Detalhes</h2>
-            <div class="dados-ambiente">
-                <h3>Monitoramento Ambiental - MONTAGEM</h3>
-                <p>Temp: <span class="temp-value" data-modulo="montagem">24.0°C</span></p>
-                <p>Umid: <span class="umid-value" data-modulo="montagem">62%</span></p>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="expedicao">
-            <h2>Expedição (12 Posições)</h2>
-            <div class="dados-ambiente">
-                <h3>Monitoramento Ambiental - EXPEDIÇÃO</h3>
-                <p>Temp: <span class="temp-value" data-modulo="expedicao">25.0°C</span></p>
-                <p>Umid: <span class="umid-value" data-modulo="expedicao">58%</span></p>
-            </div>
-            <div class="lista-expedicao">
-                <div class="posicao-expedicao" data-pos="1">
-                    <span class="pedido-num">Nº Pedido: 10012</span>
-                    <span class="pedido-status trabalhando">Em Processo</span>
+        <section id="status-geral" class="card">
+            <div class="status-grid">
+                <div class="status-indicator">
+                    <p>ESTOQUE</p>
+                    <span id="geral-estoque" class="status-value ocioso">Ocioso</span>
                 </div>
-                <div class="posicao-expedicao" data-pos="2">
-                    <span class="pedido-num">Nº Pedido: 10013</span>
-                    <span class="pedido-status status-finalizado">Finalizado</span>
+                <div class="status-indicator">
+                    <p>PROCESSO</p>
+                    <span id="geral-processo" class="status-value ocioso">Ocioso</span>
                 </div>
-                <div class="posicao-expedicao" data-pos="3">
-                    <span class="pedido-num">Nº Pedido: 10014</span>
-                    <span class="pedido-status status-cancelado">Cancelado</span>
+                <div class="status-indicator">
+                    <p>MONTAGEM</p>
+                    <span id="geral-montagem" class="status-value ocioso">Ocioso</span>
                 </div>
-                <div class="posicao-expedicao" data-pos="4">
-                    <span class="pedido-num">Vazio</span>
-                    <span class="pedido-status ocioso">Vago</span>
-                </div>
-                <div class="posicao-expedicao" data-pos="5">
-                    <span class="pedido-num">Nº Pedido: 10016</span>
-                    <span class="pedido-status status-nao-iniciado">Não Iniciado</span>
-                </div>
-                <div class="posicao-expedicao" data-pos="6">
-                    <span class="pedido-num">Nº Pedido: 10017</span>
-                    <span class="pedido-status status-aguardando">Aguardando Módulo</span>
-                </div>
-                <div class="posicao-expedicao" data-pos="7">
-                    <span class="pedido-num">Vazio</span>
-                    <span class="pedido-status ocioso">Vago</span>
-                </div>
-                <div class="posicao-expedicao" data-pos="8">
-                    <span class="pedido-num">Nº Pedido: 10019</span>
-                    <span class="pedido-status trabalhando">Em Processo</span>
-                </div>
-                <div class="posicao-expedicao" data-pos="9">
-                    <span class="pedido-num">Nº Pedido: 10020</span>
-                    <span class="pedido-status status-finalizado">Finalizado</span>
-                </div>
-                <div class="posicao-expedicao" data-pos="10">
-                    <span class="pedido-num">Nº Pedido: 10021</span>
-                    <span class="pedido-status trabalhando">Em Processo</span>
-                </div>
-                <div class="posicao-expedicao" data-pos="11">
-                    <span class="pedido-num">Vazio</span>
-                    <span class="pedido-status ocioso">Vago</span>
-                </div>
-                <div class="posicao-expedicao" data-pos="12">
-                    <span class="pedido-num">Nº Pedido: 10023</span>
-                    <span class="pedido-status status-cancelado">Cancelado</span>
+                <div class="status-indicator">
+                    <p>EXPEDIÇÃO</p>
+                    <span id="geral-expedicao" class="status-value ocioso">Ocioso</span>
                 </div>
             </div>
         </section>
-        
-        <hr>
 
-        <section id="detalhes-pedido" style="display: none; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-            <h2>Detalhes do Pedido Selecionado</h2>
-            <p>Nº: <span id="detalhe-num-pedido">--</span></p>
-            <p>Status Atual: <span id="detalhe-status">--</span></p>
-            <p>Próxima Etapa: <span id="detalhe-etapa">--</span></p>
-        </section>
-                
+        <div class="modulos-grid">
+            
+            <section class="card modulo-card">
+                <div class="modulo-header">
+                    <h2>Estoque (28 Posições)</h2>
+                    <div class="metricas-sensoras">
+                        <span>T: 25.5°C</span> <span>U: 60%</span> <span class="alerta">AI: 180</span> <span>V: 235V</span>
+                    </div>
+                </div>
+                <div class="grid-pecas">
+                    <div class="posicao vermelho">V1</div><div class="posicao azul">A1</div><div class="posicao preto">P1</div><div class="posicao vazio">--</div>
+                    <div class="posicao vermelho">V2</div><div class="posicao azul">A2</div><div class="posicao preto">P2</div>
+                    <div class="posicao vazio">--</div><div class="posicao vermelho">V3</div><div class="posicao azul">A3</div><div class="posicao preto">P3</div>
+                    <div class="posicao vazio">--</div><div class="posicao vermelho">V4</div><div class="posicao azul">A4</div>
+                    <div class="posicao preto">P4</div><div class="posicao vazio">--</div><div class="posicao vermelho">V5</div><div class="posicao azul">A5</div>
+                    <div class="posicao preto">P5</div><div class="posicao vazio">--</div><div class="posicao vermelho">V6</div>
+                    <div class="posicao azul">A6</div><div class="posicao preto">P6</div><div class="posicao vazio">--</div><div class="posicao vermelho">V7</div>
+                    <div class="posicao azul">A7</div><div class="posicao preto">P7</div><div class="posicao vazio">--</div>
+                </div>
+            </section>
+
+            <section class="card modulo-card">
+                <div class="modulo-header">
+                    <h2>Processo</h2>
+                    <div class="metricas-sensoras">
+                        <span>T: 28.0°C</span> <span>U: 55%</span> <span>AI: 00</span> <span>V: 218V</span>
+                    </div>
+                </div>
+                <div class="modulo-conteudo">
+                    <p class="placeholder-text">Monitoramento do túnel de processamento.</p>
+                </div>
+            </section>
+
+            <section class="card modulo-card">
+                <div class="modulo-header">
+                    <h2>Montagem</h2>
+                    <div class="metricas-sensoras">
+                        <span>T: 24.0°C</span> <span>U: 62%</span> <span>AI: 00</span> <span>V: 221V</span>
+                    </div>
+                </div>
+                <div class="modulo-conteudo">
+                    <p class="placeholder-text">Status dos atuadores e sensores.</p>
+                </div>
+            </section>
+
+            <section class="card modulo-card">
+                <div class="modulo-header">
+                    <h2>Expedição</h2>
+                    <div class="metricas-sensoras">
+                        <span>T: 25.0°C</span> <span>U: 58%</span> <span>AI: 10</span> <span class="alerta">A: 5.5A</span>
+                    </div>
+                </div>
+                <div class="modulo-conteudo" id="lista-expedicao">
+                    <p class="placeholder-text">Aguardando conclusão de pedidos...</p>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="container-cancelar">
+            <button class="btn-cancelar" onclick="cancelarProducao()">Cancelar Pedido</button>
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; Projeto Bancada 4.0 | Última Atualização: <span id="data-hora-atualizacao">--</span></p>
-    </footer>
-    
-  
-<script src="../js/lab-digital.js"></script>
-</body>
-</html>
+    <script src="dashboard.js"></script>
 </body>
 </html>
