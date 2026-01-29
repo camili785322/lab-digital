@@ -1,32 +1,115 @@
-function abrirModalPedido() { document.getElementById('modalPedido').style.display = 'block'; }
-function fecharModalPedido() { document.getElementById('modalPedido').style.display = 'none'; }
-function abrirModalDetalhes() { document.getElementById('modalDetalhes').style.display = 'block'; }
-function fecharModalDetalhes() { document.getElementById('modalDetalhes').style.display = 'none'; }
 
-document.getElementById('form-pedido').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const cor = document.getElementById('cor-input').value;
-    const qtd = document.getElementById('qtd-input').value;
-    
-    iniciarProducao(cor, qtd);
-    fecharModalPedido();
-});
+let progressoAtivo = 0;
+let dadosPedido = { 
+    cor: 'Azul',      
+    velocidade: '300' 
+};
 
-function iniciarProducao(cor, quantidade) {
-    document.querySelectorAll('.status-value').forEach(el => {
-        el.textContent = "Trabalhando";
-        el.className = "status-value trabalhando";
-    });
+const dom = {
+    revCor: document.getElementById('rev-cor'),    
+    revVel: document.getElementById('rev-vel'),    
+    slider: document.getElementById('range-vel'),  
+    valorRpm: document.getElementById('valor-range'),
+    barra: document.getElementById('barra-interna'),
+    porcento: document.getElementById('porcento'),
+    msg: document.getElementById('msg-progresso')
+};
 
-    document.getElementById('detalhe-info').textContent = `Pedido: ${quantidade}x Peça ${cor}`;
-    document.getElementById('barra-progresso').style.width = "35%";
-    document.getElementById('step-1').classList.add('active');
-    
-    alert(`Pedido de ${quantidade} peças ${cor} iniciado!`);
+
+
+function abrirModal(id) {
+    document.getElementById(id).style.display = 'flex';
 }
 
-function cancelarProducao() {
-    if(confirm("Deseja interromper a produção atual?")) {
-        location.reload();
+function fecharModal(id) {
+    document.getElementById(id).style.display = 'none';
+}
+
+function mudarPasso(passo) {
+    
+    document.querySelectorAll('.step-p').forEach(s => {
+        s.classList.remove('active');
+        if (parseInt(s.dataset.step) <= passo) s.classList.add('active');
+    });
+
+    document.querySelectorAll('.step-content-p').forEach(c => c.classList.remove('active'));
+    document.getElementById(`step-${passo}`).classList.add('active');
+    
+   
+    atualizarResumo();
+}
+
+
+document.querySelectorAll('.option-card-p').forEach(card => {
+    card.addEventListener('click', function() {
+        document.querySelectorAll('.option-card-p').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+
+        dadosPedido.cor = this.dataset.value;
+        
+       
+        atualizarResumo();
+    });
+});
+
+
+if (dom.slider) {
+    dom.slider.addEventListener('input', function() {
+        const valor = this.value;
+        dadosPedido.velocidade = valor;
+
+       
+        if (dom.valorRpm) dom.valorRpm.innerText = valor;
+        atualizarResumo();
+    });
+}
+
+function atualizarResumo() {
+    if (dom.revCor) dom.revCor.innerText = dadosPedido.cor;
+    if (dom.revVel) dom.revVel.innerText = dadosPedido.velocidade;
+}
+
+
+function finalizarPedido() {
+    fecharModal('modalPedido');
+    
+    
+    const statusIds = ['st-estoque', 'st-processo', 'st-montagem', 'st-expedicao'];
+    statusIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.textContent = 'Trabalhando';
+            el.className = 'trabalhando'; 
+        }
+    });
+
+    iniciarSimulacao();
+}
+
+function iniciarSimulacao() {
+    progressoAtivo = 0;
+    
+    const intervalo = setInterval(() => {
+        progressoAtivo += 2;
+        
+        if (dom.barra) dom.barra.style.width = progressoAtivo + '%';
+        if (dom.porcento) dom.porcento.textContent = progressoAtivo + '%';
+        if (dom.msg) dom.msg.textContent = `Processando peça ${dadosPedido.cor}...`;
+
+        if (progressoAtivo >= 100) {
+            clearInterval(intervalo);
+            if (dom.msg) dom.msg.textContent = "Produção Concluída!";
+            
+           
+            setTimeout(() => {
+                alert(`Sucesso: Peça ${dadosPedido.cor} finalizada `);
+            }, 300);
+        }
+    }, 150);
+}
+
+function cancelarPedido() {
+    if (confirm("Deseja cancelar a produção atual?")) {
+        window.location.reload();
     }
 }

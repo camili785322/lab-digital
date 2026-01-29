@@ -1,27 +1,22 @@
-function handleCadastro(event) {
-    event.preventDefault();
+document.getElementById('form-cadastro').addEventListener('submit', function(e) {
+    e.preventDefault();
+
     const nome = document.getElementById('nome-cadastro').value;
     const email = document.getElementById('email-cadastro').value;
     const senha = document.getElementById('senha-cadastro').value;
-    const messageElement = document.getElementById('cadastro-message');
 
-    let usuarios = JSON.parse(localStorage.getItem('listaUsuarios')) || [];
+    const usuario = {
+        nome: nome,
+        email: email,
+        senha: senha
+    };
+
+
+    localStorage.setItem('usuarioCadastrado', JSON.stringify(usuario));
+
+    alert('Cadastro realizado com sucesso! Agora você pode entrar.');
     
-    if (usuarios.find(u => u.email === email)) {
-        messageElement.textContent = 'Erro: Este email já está cadastrado.';
-        messageElement.style.color = 'red';
-        return;
-    }
+   
+    window.location.href = '../login/login.html';
+});stroForm.addEventListener('submit', handleCadastro);
 
-    usuarios.push({ nome, email, senha });
-    localStorage.setItem('listaUsuarios', JSON.stringify(usuarios));
-
-    messageElement.textContent = 'Sucesso! Redirecionando...';
-    messageElement.style.color = 'green';
-    setTimeout(() => { window.location.href = 'login.html'; }, 2000);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const cadastroForm = document.getElementById('cadastro-form');
-    if (cadastroForm) cadastroForm.addEventListener('submit', handleCadastro);
-});

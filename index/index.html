@@ -3,109 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab Digital: Monitoramento Bancada Industrial 4.0</title>
+    <title>Lab Digital 4.0 - Monitoramento</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
     <header>
-        <div id="logo-container">
-            <img src="../imagens/camili.png" alt="Logomarca" id="system">
-        </div>
-        <h1 class="titulo">Lab Digital: Monitoramento Bancada Industrial 4.0</h1>
+        <img src="../imagens/camili.png" alt="Logo" style="height: 100px;">
+        <h1>Lab Digital: Monitoramento Bancada Industrial 4.0</h1>
     </header>
 
-    <nav class="acoes-topo">
-        <button class="btn-acao primary" onclick="abrirModalPedido()">Criar Novo Pedido</button>
-        <button class="btn-acao secondary" onclick="abrirModalDetalhes()">Ver Detalhes do Processo</button>
-    </nav>
+    <div class="acoes-topo">
+        <button class="btn-novo" onclick="abrirModal('modalPedido')">Criar Novo Pedido</button>
+        <button class="btn-detalhes" onclick="abrirModal('modalDetalhes')">Ver Detalhes do Processo</button>
+    </div>
 
-    <main class="dashboard-container">
-        
-        <section id="status-geral" class="card">
-            <div class="status-grid">
-                <div class="status-indicator">
-                    <p>ESTOQUE</p>
-                    <span id="geral-estoque" class="status-value ocioso">Ocioso</span>
-                </div>
-                <div class="status-indicator">
-                    <p>PROCESSO</p>
-                    <span id="geral-processo" class="status-value ocioso">Ocioso</span>
-                </div>
-                <div class="status-indicator">
-                    <p>MONTAGEM</p>
-                    <span id="geral-montagem" class="status-value ocioso">Ocioso</span>
-                </div>
-                <div class="status-indicator">
-                    <p>EXPEDIÇÃO</p>
-                    <span id="geral-expedicao" class="status-value ocioso">Ocioso</span>
-                </div>
+    <main class="container">
+        <section class="status-row">
+            <div class="status-card">
+                <p>ESTOQUE</p>
+                <h2 id="st-estoque" class="ocioso">Ocioso</h2>
+            </div>
+            <div class="status-card">
+                <p>PROCESSO</p>
+                <h2 id="st-processo" class="ocioso">Ocioso</h2>
+            </div>
+            <div class="status-card">
+                <p>MONTAGEM</p>
+                <h2 id="st-montagem" class="ocioso">Ocioso</h2>
+            </div>
+            <div class="status-card">
+                <p>EXPEDIÇÃO</p>
+                <h2 id="st-expedicao" class="ocioso">Ocioso</h2>
             </div>
         </section>
 
-        <div class="modulos-grid">
-            
-            <section class="card modulo-card">
-                <div class="modulo-header">
-                    <h2>Estoque (28 Posições)</h2>
-                    <div class="metricas-sensoras">
-                        <span>T: 25.5°C</span> <span>U: 60%</span> <span class="alerta">AI: 180</span> <span>V: 235V</span>
+        <div class="grid-principal">
+            <section class="card-modulo">
+                <div class="card-header">
+                    <h3>Estoque (28 Posições)</h3>
+                    <div class="badges">
+                        <span class="blue">T: 25.5°C</span> <span class="blue">U: 60%</span> 
+                        <span class="red">AI: 180</span> <span class="blue">V: 235V</span>
                     </div>
                 </div>
-                <div class="grid-pecas">
-                    <div class="posicao vermelho">V1</div><div class="posicao azul">A1</div><div class="posicao preto">P1</div><div class="posicao vazio">--</div>
-                    <div class="posicao vermelho">V2</div><div class="posicao azul">A2</div><div class="posicao preto">P2</div>
-                    <div class="posicao vazio">--</div><div class="posicao vermelho">V3</div><div class="posicao azul">A3</div><div class="posicao preto">P3</div>
-                    <div class="posicao vazio">--</div><div class="posicao vermelho">V4</div><div class="posicao azul">A4</div>
-                    <div class="posicao preto">P4</div><div class="posicao vazio">--</div><div class="posicao vermelho">V5</div><div class="posicao azul">A5</div>
-                    <div class="posicao preto">P5</div><div class="posicao vazio">--</div><div class="posicao vermelho">V6</div>
-                    <div class="posicao azul">A6</div><div class="posicao preto">P6</div><div class="posicao vazio">--</div><div class="posicao vermelho">V7</div>
-                    <div class="posicao azul">A7</div><div class="posicao preto">P7</div><div class="posicao vazio">--</div>
+                <div class="grid-estoque-7x4">
+                    <div class="peca vermelho">V1</div> <div class="peca azul">A1</div> <div class="peca preto">P1</div> <div class="peca vazio">--</div>
+                    <div class="peca vermelho">V2</div> <div class="peca azul">A2</div> <div class="peca preto">P2</div> <div class="peca vazio">--</div>
+                    <div class="peca vermelho">V3</div> <div class="peca azul">A3</div> <div class="peca preto">P3</div> <div class="peca vazio">--</div>
+                    <div class="peca vermelho">V4</div> <div class="peca azul">A4</div> <div class="peca preto">P4</div> <div class="peca vazio">--</div>
+                    <div class="peca vermelho">V5</div> <div class="peca azul">A5</div> <div class="peca preto">P5</div> <div class="peca vazio">--</div>
+                    <div class="peca vermelho">V6</div> <div class="peca azul">A6</div> <div class="peca preto">P6</div> <div class="peca vazio">--</div>
+                    <div class="peca vermelho">V7</div> <div class="peca azul">A7</div> <div class="peca preto">P7</div> <div class="peca vazio">--</div>
                 </div>
             </section>
 
-            <section class="card modulo-card">
-                <div class="modulo-header">
-                    <h2>Processo</h2>
-                    <div class="metricas-sensoras">
-                        <span>T: 28.0°C</span> <span>U: 55%</span> <span>AI: 00</span> <span>V: 218V</span>
-                    </div>
-                </div>
-                <div class="modulo-conteudo">
-                    <p class="placeholder-text">Monitoramento do túnel de processamento.</p>
-                </div>
+            <section class="card-modulo">
+                <div class="card-header"><h3>Processo</h3><div class="badges"><span class="blue">T: 28.0°C</span><span class="blue">V: 218V</span></div></div>
+                <div class="conteudo-centro"><p class="legenda">Monitoramento do túnel.</p></div>
             </section>
-
-            <section class="card modulo-card">
-                <div class="modulo-header">
-                    <h2>Montagem</h2>
-                    <div class="metricas-sensoras">
-                        <span>T: 24.0°C</span> <span>U: 62%</span> <span>AI: 00</span> <span>V: 221V</span>
-                    </div>
-                </div>
-                <div class="modulo-conteudo">
-                    <p class="placeholder-text">Status dos atuadores e sensores.</p>
-                </div>
+            <section class="card-modulo">
+                <div class="card-header"><h3>Montagem</h3><div class="badges"><span class="blue">T: 24.0°C</span><span class="blue">V: 221V</span></div></div>
+                <div class="conteudo-centro"><p class="legenda">Status dos atuadores.</p></div>
             </section>
-
-            <section class="card modulo-card">
-                <div class="modulo-header">
-                    <h2>Expedição</h2>
-                    <div class="metricas-sensoras">
-                        <span>T: 25.0°C</span> <span>U: 58%</span> <span>AI: 10</span> <span class="alerta">A: 5.5A</span>
-                    </div>
-                </div>
-                <div class="modulo-conteudo" id="lista-expedicao">
-                    <p class="placeholder-text">Aguardando conclusão de pedidos...</p>
-                </div>
+            <section class="card-modulo">
+                <div class="card-header"><h3>Expedição</h3><div class="badges"><span class="blue">T: 25.0°C</span><span class="red">A: 5.5A</span></div></div>
+                <div class="conteudo-centro"><p class="legenda">Aguardando produção...</p></div>
             </section>
-
         </div>
 
-        <div class="container-cancelar">
-            <button class="btn-cancelar" onclick="cancelarProducao()">Cancelar Pedido</button>
+        <div class="footer-btn">
+            <button class="btn-cancelar" onclick="cancelarPedido()">Cancelar Pedido</button>
         </div>
     </main>
+
+    <div id="modalPedido" class="modal-overlay">
+        <div class="modal-card-pedido">
+            <div class="modal-header">
+                <h3>Novo Pedido</h3>
+                <button class="close-btn" onclick="fecharModal('modalPedido')">&times;</button>
+            </div>
+            <div class="progress-bar-pedido">
+                <span class="step-p active" data-step="1">1. Peça</span>
+            </div>
+            <div class="step-container">
+                <div class="step-content-p active" id="step-1">
+                    <div class="options-grid-p">
+                        <div class="option-card-p selected" data-value="Vermelho">
+                            <div class="card-visual cor-vermelho"></div>
+                            <h4>Vermelha</h4>
+                        </div>
+                        <div class="option-card-p" data-value="Azul">
+                            <div class="card-visual cor-azul"></div>
+                            <h4>Azul</h4>
+                        </div>
+                        <div class="option-card-p" data-value="Preto">
+                            <div class="card-visual cor-preto"></div>
+                            <h4>Preta</h4>
+                        </div>
+                    </div>
+                    <button class="next-btn-p" onclick="mudarPasso(2)">Próxima Etapa →</button>
+                </div>
+                <div class="step-content-p" id="step-2">
+                    
+                    <div class="modal-footer-p">
+        
+                    </div>
+                </div>
+                <div class="step-content-p" id="step-3">
+                    <div class="review-box">
+                        <p><strong>Cor:</strong> <span id="rev-cor">Vermelho</span></p>
+                    </div>
+                    <div class="modal-footer-p">
+                        <button class="prev-btn-p" onclick="mudarPasso(2)">← Voltar</button>
+                        <button class="submit-btn-p" onclick="finalizarPedido()">Iniciar Produção</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalDetalhes" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header"><h3>Status do Processo</h3><button class="close-btn" onclick="fecharModal('modalDetalhes')">&times;</button></div>
+            <p id="msg-progresso">Sistema Ocioso</p>
+            <div class="barra-externa"><div id="barra-interna"></div></div>
+            <span id="porcento">0%</span>
+        </div>
+    </div>
 
     <script src="dashboard.js"></script>
 </body>

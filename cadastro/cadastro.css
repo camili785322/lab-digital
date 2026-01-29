@@ -1,49 +1,90 @@
-body{
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f9; }
-
-.login-container { 
-     background-color: white; 
-     padding: 40px; 
-     border-radius: 10px;
-     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
-     width: 350px; 
-    text-align: center; 
-     }
-
-.login-container input, .login-container select { 
-        width: 90%;
-        padding: 10px; 
-        margin: 8px 0; 
-        border: 1px solid #ccc; 
-        border-radius: 5px; 
-        box-sizing: border-box;
-    }
-
-.login-container button { 
-        width: 100%;
-         padding: 10px; 
-         background-color: #28a745; 
-         color: white; 
-         border: none; 
-         border-radius: 5px;
-          cursor: pointer; 
-          font-size: 1.1em;
-           margin-top: 15px; 
-        }
-
-.login-container h2 {
-    color: #333; 
-    margin-bottom: 20px;
-    }
-
-.back-link { 
-    display: block; 
-    margin-top: 15px;
-    color: #94afcc; 
-    text-decoration: none; 
+:root {
+    --bg-page: #e3f2fd;
+    --dark: #343a40;
+    --primary: #94afcc;
+    --white: #ffffff;
 }
 
+body.cadastro-body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg-page);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cadastro-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.cadastro-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.cadastro-logo {
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.cadastro-header h2 {
+    color: var(--dark);
+    font-size: 1.4em;
+    margin: 0 0 25px 0;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 0.95em;
+}
+
+.btn-cadastro {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-cadastro:hover {
+    filter: brightness(0.9);
+}
+
+.cadastro-footer {
+    margin-top: 25px;
+    font-size: 0.85em;
+    color: #888;
+}
+
+.cadastro-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+}

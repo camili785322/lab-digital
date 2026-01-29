@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Lab Digital 4.0</title>
-    <link rel="stylesheet" href="../login/login.css">
+    <title>Acesso à Bancada - Lab Digital</title>
+    <link rel="stylesheet" href="login.css">
 </head>
-<body>
+<body class="login-body">
 
     <div class="login-container">
-        <h2>Acesso à Bancada</h2>
-        
-        <form id="login-form">
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" placeholder="Email (ex: aluno@exemplo.com)" required>
-            </div>
+        <div class="login-card">
+            <header class="login-header">
+                <h2>Acesso à Bancada</h2>
+            </header>
 
-            <div class="form-group">
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" placeholder="Sua Senha" required>
-            </div>
-            
-            <p id="login-message"></p>
+            <form id="form-login">
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="Ex: aluno@exemplo.com" required>
+                </div>
 
-            <button type="submit">Entrar</button>
-        </form>
-        
-        <p class="signup-text">
-            Não tem uma conta? <a href="../cadastro/cadastro.html">Cadastre-se aqui</a>
-        </p>
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="Sua senha" required>
+                </div>
+
+                <button type="submit" class="btn-login" onclick="logar(event)">Entrar</button>
+            </form>
+
+            <div class="login-footer">
+                <p>Não tem uma conta? <a href="../cadastro/cadastro.html">Cadastre-se aqui</a></p>
+            </div>
+        </div>
     </div>
-    
-    <script src="../login/login.js"></script>
+
+    <script src="login.js"></script>
 </body>
 </html>
