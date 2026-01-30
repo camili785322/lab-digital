@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Conta - Lab Digital</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="usuario.css">
 </head>
 <body class="cadastro-body">
 
@@ -31,13 +31,29 @@
                 </div>
                 <button type="submit" class="btn-cadastro">Finalizar Cadastro</button>
             </form>
+        </div>
 
-            <div class="cadastro-footer">
-                <p>Já tem uma conta? <a href="../login/login.html">Faça login</a></p>
+        <div class="lista-usuarios-card">
+            <header class="lista-header">
+                <h3>Usuários Cadastrados</h3>
+            </header>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela">
+                        </tbody>
+                </table>
             </div>
         </div>
 
+    </div>
 
-    <script src="cadastro.js"></script>
+    <script src="usuario.js"></script>
 </body>
 </html>

@@ -29,27 +29,27 @@
 function logar(e){
     e.preventDefault();
 
-    let input_usuario = document.getElementById("email");
+    let input_email = document.getElementById("email");
     let input_senha = document.getElementById("senha");
 
-    if(!input_usuario || !input_senha){
+    if(!input_email|| !input_senha){
         return;
     }
 
-    console.log(input_usuario)
+    console.log(input_email)
 
-    let usuario = input_usuario.value;
+    let email = input_email.value;
     let senha = input_senha.value;
 
     fetch("http://localhost:1880/autenticacao/autenticar",{
         method:"POST",
-        body:JSON.stringify({usuario,senha})
+        body:JSON.stringify({email,senha})
     }).then((resposta)=>{
         console.log(resposta)
         if(resposta.ok){
             resposta.json()
         }
-    }).then((usuario)=>{
+    }).then((email)=>{
         window.location.href = '../index/index.html'; 
     })
 

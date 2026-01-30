@@ -90,3 +90,52 @@ body.cadastro-body {
 }
 
 
+.lista-header h3 {
+    color: var(--text-main);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    border-left: 4px solid var(--primary-blue);
+    padding-left: 10px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    background-color: var(--bg-page); 
+    color: var(--text-main);
+    padding: 12px;
+    font-weight: 600;
+    border-bottom: 2px solid #d1e3f8;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+tr:hover {
+    background-color: #f8fbff; 
+}
+
+.btn-excluir {
+    background: none;
+    border: none;
+    color: var(--danger-red);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+.btn-excluir:hover {
+    transform: scale(1.2);
+}

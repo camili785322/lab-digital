@@ -1,22 +1,34 @@
-document.getElementById('form-cadastro').addEventListener('submit', function(e) {
+document.getElementById('form-cadastro').addEventListener('submit', function(e){
     e.preventDefault();
 
-    const nome = document.getElementById('nome-cadastro').value;
-    const email = document.getElementById('email-cadastro').value;
-    const senha = document.getElementById('senha-cadastro').value;
+    let input_nome = document.getElementById("nome-cadastro");
+    let input_email = document.getElementById("email-cadastro");
+    let input_senha = document.getElementById("senha-cadastro");
 
-    const usuario = {
-        nome: nome,
-        email: email,
-        senha: senha
-    };
+    if(!input_nome || !input_email || !input_senha ){
+        console.log("Inputs não encontrados")
+        return;
+    }
 
+    console.log(input_email)
 
-    localStorage.setItem('usuarioCadastrado', JSON.stringify(usuario));
+    let nome = input_nome.value;
+    let email = input_email.value;
+    let senha = input_senha.value;
 
-    alert('Cadastro realizado com sucesso! Agora você pode entrar.');
-    
-   
-    window.location.href = '../login/login.html';
-});stroForm.addEventListener('submit', handleCadastro);
+    fetch("http://localhost:1880/criar/usuario",{
+        method:"POST",
+        body:JSON.stringify({ nome,email,senha})
+    }).then((resposta)=>{
+        console.log(resposta)
+        if(resposta.ok){
+            resposta.json()
+        }
+
+    }).then((email)=>{
+        alert('Cadastro realizado com sucesso! Agora você pode entrar.')
+        window.location.href = '../login/login.html'; 
+    })
+
+})
 

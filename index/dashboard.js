@@ -2,7 +2,6 @@
 let progressoAtivo = 0;
 let dadosPedido = { 
     cor: 'Azul',      
-    velocidade: '300' 
 };
 
 const dom = {
@@ -103,7 +102,7 @@ function iniciarSimulacao() {
            
             setTimeout(() => {
                 alert(`Sucesso: Peça ${dadosPedido.cor} finalizada `);
-            }, 300);
+            });
         }
     }, 150);
 }

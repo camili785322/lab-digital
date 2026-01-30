@@ -16,6 +16,7 @@
     <div class="acoes-topo">
         <button class="btn-novo" onclick="abrirModal('modalPedido')">Criar Novo Pedido</button>
         <button class="btn-detalhes" onclick="abrirModal('modalDetalhes')">Ver Detalhes do Processo</button>
+        
     </div>
 
     <main class="container">
@@ -73,8 +74,11 @@
         </div>
 
         <div class="footer-btn">
-            <button class="btn-cancelar" onclick="cancelarPedido()">Cancelar Pedido</button>
-        </div>
+    <button class="btn-cancelar" onclick="cancelarPedido()">Cancelar Pedido</button>
+    <a href="../usuario/usuario.html" class="btn-usuario-link">
+        <i class="fas fa-users"></i> Usuários
+    </a>
+</div>
     </main>
 
     <div id="modalPedido" class="modal-overlay">
