@@ -53,7 +53,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function(e){
 
     fetch("http://localhost:1880/listar/usuario",{
         method:"POST",
-        body:JSON.stringify({ nome,email,})
+        body:JSON.stringify({ nome,data,email,senha,tipo})
     }).then((resposta)=>{
         console.log(resposta)
         if(resposta.ok){

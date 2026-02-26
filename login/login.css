@@ -81,3 +81,15 @@ body.login-body {
     text-decoration: none;
     font-weight: bold;
 }
+
+.btn-cancelar {
+    /* ... seus estilos atuais ... */
+    transition: all 0.3s ease;
+}
+
+.btn-cancelar:hover {
+    background-color: #ea4335; /* O vermelho que você já usa */
+    color: white;
+    box-shadow: 0 4px 10px rgba(234, 67, 53, 0.3);
+    transform: scale(1.05);
+}

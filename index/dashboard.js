@@ -112,3 +112,38 @@ function cancelarPedido() {
         window.location.reload();
     }
 }
+function cancelarPedido() {
+    let motivo = prompt("Por qual motivo o pedido foi cancelado?");
+
+    if (motivo === null) {
+        return; 
+    }
+
+    if (motivo.trim() === "") {
+        alert("Por favor, informe um motivo para cancelar.");
+        return;
+    }
+
+    alert("Cancelando pedido");
+    
+    fetch("http://localhost:1880/cancela/pedido", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+            status: "Cancelado",
+            justificativa: motivo,
+            data_hora: new Date().toLocaleString()
+        })
+    })
+    .then(resposta => {
+        if(resposta.ok) {
+            alert("Pedido cancelado com sucesso!");
+            
+            location.reload(); 
+        }
+
+        
+        
+    });
+}
+

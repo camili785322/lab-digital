@@ -89,4 +89,18 @@ body.cadastro-body {
     font-weight: bold;
 }
 
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: white;
+    color: var(--dark-text);
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+}
 
+select:focus {
+    border-color: var(--primary);
+}
