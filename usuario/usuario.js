@@ -65,10 +65,20 @@ document.getElementById('form-cadastro').addEventListener('submit', function(e){
     })
 })
 
-window.onload = function(){
-    buscarUsuarios()
+function removerUsuario(idUsuario) {
+    if (confirm("Deseja realmente excluir este usuário?")) {
+        fetch("http://localhost:1880/remove/usuario", {
+            method: "DELETE",
+            body: JSON.stringify({ id: idUsuario }) 
+        })
+        .then((resposta) => {
+            if (resposta.ok) {
+                alert('Cadastro excluído com sucesso!');
+                carregarUsuariosNaTabela(); 
+            }
+        })
+    
+    }
 }
 
-function buscarUsuarios(){
-    console.log("buscando usuarios...")
-}
+

@@ -107,11 +107,7 @@ function iniciarSimulacao() {
     }, 150);
 }
 
-function cancelarPedido() {
-    if (confirm("Deseja cancelar a produção atual?")) {
-        window.location.reload();
-    }
-}
+
 function cancelarPedido() {
     let motivo = prompt("Por qual motivo o pedido foi cancelado?");
 
