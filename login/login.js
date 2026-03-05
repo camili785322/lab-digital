@@ -42,7 +42,7 @@ function logar(e){
     let senha = input_senha.value;
 
     fetch("http://localhost:1880/autenticacao/autenticar",{
-        method:"POST",
+        method:"GET",
         body:JSON.stringify({email,senha})
     }).then((resposta)=>{
         console.log(resposta)

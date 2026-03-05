@@ -21,7 +21,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function(e){
     let tipo = input_tipo.value;
 
     fetch("http://localhost:1880/criar/usuario",{
-        method:"GET",
+        method:"POST",
         body:JSON.stringify({ nome,data,email,senha,tipo})
     }).then((resposta)=>{
         console.log(resposta)

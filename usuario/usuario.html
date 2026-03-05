@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,72 +9,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="usuario.css">
 </head>
-<body class="cadastro-body">
+<body class="usuario-body">
 
-   <div class="cadastro-container">
+    <div class="usuario-container">
         
-        <div class="cadastro-card">
-            <header class="cadastro-header">
+        <div class="usuario-card">
+            <header class="usuario-header">
                 <h2>Criar Conta</h2>
             </header>
 
-            <form id="form-cadastro">
+            <form id="form-usuario">
                 <div class="input-group">
                     <label>Nome Completo</label>
-                    <input type="text" id="nome-cadastro" placeholder="Seu nome" required>
+                    <input type="text" id="nome-usuario" placeholder="Seu nome" required>
                 </div>
+                
                 <div class="input-group">
                     <label>Data de nascimento</label>
-                    <input type="email" id="dt_nascimento-cadastro" placeholder="dd/aa/yyy" required>
+                    <input type="date" id="dt_nascimento-usuario" required>
                 </div>
 
 
                 <div class="input-group">
                     <label>E-mail</label>
-                    <input type="email" id="email-cadastro" placeholder="aluno@exemplo.com" required>
+                    <input type="email" id="email-usuario" placeholder="aluno@exemplo.com" >
                 </div>
                 
             
                 <div class="input-group">
                     <label>Senha</label>
-                    <input type="password" id="senha-cadastro" placeholder="Crie uma senha" required>
+                    <input type="password" id="senha-usuario" placeholder="Crie uma senha" required>
                 </div>
 
                  <div class="input-group">
                     <label for="tipo-usuario">Tipo de Usuário</label>
                     <select id="tipo-usuario" required>
+
                     <option value="" disabled selected>Selecione uma opção</option>
                     <option value="professor">Professor</option>
                      <option value="aluno">Aluno</option>
     </select>
 </div>
-                <button type="submit" class="btn-cadastro">Finalizar Cadastro</button>
-                
-            </form>
+                <button class="btn-usuario" id="btn-finalizar">Finalizar Cadastro</button>
 
+<div class="botoes-container">
+    <button class="btn-usuario btn-menor" onclick="alterarUsuario()">Alterar Usuario</button>
+    <button class="btn-usuario btn-menor" onclick="excluirUsuario()">Excluir usuario</button>
+    <button class="btn-usuario btn-menor" onclick="voltar()">Voltar</button>
+</div>
 
-        <div class="lista-usuarios-card">
-            <header class="lista-header">
-                <h3>Usuários Cadastrados</h3>
-            </header>
-            
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                        </tr>
-                    </thead>
-                    <tbody id="corpo-tabela">
-
-                        </tbody>
-
-                </table>
+<div class="lista-usuarios-secao">
+    <h3>Usuários Cadastrados</h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+</div>
+                <p><a href="../index/index.html"></a></p>
             </div>
         </div>
-            <button type="submit" class="btn-cadastro">Excluir Usuario</button>
-    </div>
+
 
     <script src="usuario.js"></script>
 </body>
