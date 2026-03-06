@@ -19,8 +19,12 @@ body.usuario-body {
 
 .usuario-container {
     width: 100%;
-    max-width: 400px;
+    /* Aumentei para 600px para a tabela não ficar muito apertada */
+    max-width: 600px; 
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Cria o espaço entre os dois blocos (desenho vermelho) */
 }
 
 .usuario-card {
@@ -32,6 +36,7 @@ body.usuario-body {
     width: 100%;
     box-sizing: border-box; 
 }
+
 .usuario-logo {
     height: 60px;
     margin-bottom: 15px;
@@ -109,8 +114,8 @@ body.usuario-body {
 }
 
 table {
-    width: 100%; 
-    border-collapse: collapse;
+    width: 100%; /* Mudei de 50% para 100% para preencher o bloco */
+    border-collapse: collapse; 
     margin-top: 10px;
 }
 
@@ -166,9 +171,8 @@ table {
 }
 
 .table-responsive { 
-    max-height: 180px; 
+    max-height: 250px; 
     overflow-y: auto;  
-    margin-bottom: 10px;
     border: 1px solid #eee; 
     border-radius: 8px;
 }
@@ -183,14 +187,74 @@ table thead {
 
 .botoes-container {
     display: flex;
-    gap: 8px;           /* Espaço entre os botões */
+    gap: 8px;           
     margin-top: 20px;
     margin-bottom: 25px;
 }
 
 .btn-menor {
-    flex: 1;            /* Faz os 3 dividirem a largura igualmente */
-    padding: 8px 5px !important; /* Mais baixo */
-    font-size: 0.75rem !important; /* Texto menor para caber */
-    white-space: nowrap; /* Impede o texto de quebrar linha */
+    flex: 1;            
+    padding: 8px 5px !important; 
+    font-size: 0.75rem !important; 
+    white-space: nowrap; 
 }
+
+.lista-usuarios-secao h3 {
+    text-align: left; 
+    margin-bottom: 15px;
+    color: var(--dark);
+}
+
+.acoes-coluna {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn-tabela {
+    padding: 5px 10px !important; 
+    font-size: 12px !important;
+    width: auto !important; 
+    margin-bottom: 0 !important;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+
+.btn-alterar-tabela {
+    background-color: #f39c12 !important;
+}
+
+
+.btn-excluir-tabela {
+    background-color: #e74c3c !important;
+}
+
+.btn-tabela:hover {
+    filter: brightness(0.9);
+}
+
+
+.acoes-celula {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+
+.btn-tabela {
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+    width: auto !important;
+    margin: 0 !important;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    color: white;
+}
+
+.btn-alterar-tab { background-color: #5981ca; } 
+.btn-excluir-tab { background-color: #415fc4; } 

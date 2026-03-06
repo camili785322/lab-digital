@@ -29,55 +29,57 @@
                     <input type="date" id="dt_nascimento-usuario" required>
                 </div>
 
-
                 <div class="input-group">
                     <label>E-mail</label>
-                    <input type="email" id="email-usuario" placeholder="aluno@exemplo.com" >
+                    <input type="email" id="email-usuario" placeholder="aluno@exemplo.com">
                 </div>
                 
-            
                 <div class="input-group">
                     <label>Senha</label>
                     <input type="password" id="senha-usuario" placeholder="Crie uma senha" required>
                 </div>
 
-                 <div class="input-group">
+                <div class="input-group">
                     <label for="tipo-usuario">Tipo de Usuário</label>
                     <select id="tipo-usuario" required>
-
-                    <option value="" disabled selected>Selecione uma opção</option>
-                    <option value="professor">Professor</option>
-                     <option value="aluno">Aluno</option>
-    </select>
-</div>
+                        <option value="" disabled selected>Selecione uma opção</option>
+                        <option value="professor">Professor</option>
+                        <option value="aluno">Aluno</option>
+                    </select>
+                </div>
+                
                 <button class="btn-usuario" id="btn-finalizar">Finalizar Cadastro</button>
 
-<div class="botoes-container">
-    <button class="btn-usuario btn-menor" onclick="alterarUsuario()">Alterar Usuario</button>
-    <button class="btn-usuario btn-menor" onclick="excluirUsuario()">Excluir usuario</button>
-    <button class="btn-usuario btn-menor" onclick="voltar()">Voltar</button>
-</div>
+                <div class="botoes-container">
+                    
+                  <button type="button" class="btn-usuario" onclick="window.location.href='..index/index.html'">Voltar</button>
+                  
+                </div>
+            </form>
+        </div>
 
-<div class="lista-usuarios-secao">
-    <h3>Usuários Cadastrados</h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Data</th>
-                </tr>
-            </thead>
-            <tbody>
-                </tbody>
-        </table>
-    </div>
-</div>
-                <p><a href="../index/index.html"></a></p>
+        <div class="usuario-card lista-container">
+            <div class="lista-usuarios-secao">
+                <h3>Usuários Cadastrados</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Data</th>
+                                <th>Tipo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
+    </div>
 
     <script src="usuario.js"></script>
 </body>
