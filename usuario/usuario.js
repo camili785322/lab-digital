@@ -28,6 +28,7 @@ document.getElementById('form-usuario').addEventListener('submit', async functio
     let url = "http://localhost:1880/criar/usuario";
     let metodo = "POST";
 
+     //função para alterar
     if (usuarioEmEdicao) {
         url = "http://localhost:1880/alterar/usuario";
         metodo = "PUT"; 
@@ -50,6 +51,7 @@ document.getElementById('form-usuario').addEventListener('submit', async functio
                 document.getElementById("btn-finalizar").innerText = "Finalizar Cadastro";
             }
             
+            //função para listar
             listarUsuario();
         }
     } catch (error) {
@@ -84,11 +86,13 @@ async function listarUsuario() {
 
         usuarios.forEach(user => {
     const linha = document.createElement("tr");
+
+    user.dt_nascimento = new Date(user.dt_nascimento);
     
     linha.innerHTML = `
                 <td>${user.nome_completo || ""}</td>
                 <td>${user.email || ""}</td>
-                <td>${user.dt_nascimento || ""}</td>
+                <td>${user.dt_nascimento.toLocaleDateString('pt-br') || ""}</td>
                 <td>${user.tipo || ""}</td>
                 <td>
                     <div class="acoes-container">
@@ -114,14 +118,18 @@ async function listarUsuario() {
 function prepararEdicao(user) {
     document.getElementById("nome-usuario").value = user.nome_completo;
     document.getElementById("email-usuario").value = user.email;
-    document.getElementById("dt_nascimento-usuario").value = user.dt_nascimento;
+
+    let date = user.dt_nascimento.split('T')
+
+    document.getElementById("dt_nascimento-usuario").value = date[0];
     document.getElementById("tipo-usuario").value = user.tipo;
     
+}
     usuarioEmEdicao = user.email; 
 
     document.getElementById("btn-finalizar").innerText = "Salvar Alterações";
     window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+
 
 function resetarFormulario() {
     document.getElementById('form-usuario').reset();
@@ -133,6 +141,7 @@ function resetarFormulario() {
 // Exclui Usuario 
 
 async function excluirUsuario(emailUsuario) {
+    console.log(emailUsuario)
     if (!confirm(`Tem certeza que deseja excluir o usuário com e-mail: ${emailUsuario}?`)) {
         return;
     }
@@ -146,7 +155,8 @@ async function excluirUsuario(emailUsuario) {
 
         if (response.ok) {
             alert("Usuário excluído com sucesso!");
-            listarUsuario(); // Atualiza a tabela automaticamente
+            //tabela atualiza
+            listarUsuario(); 
         } else {
             alert("Erro ao excluir usuário no servidor.");
         }
@@ -155,42 +165,6 @@ async function excluirUsuario(emailUsuario) {
     }
 }
 
-
-/*document.getElementById('form-usuario').addEventListener('submit', function(e){
-    e.preventDefault();
-
-     let input_nome = document.getElementById("nome-usuario");
-    let input_email = document.getElementById("email-usuario");
-    let input_senha = document.getElementById("senha-usuario");
-    let input_dt_nascimento = document.getElementById("dt_nascimento-usuario");
-    let input_tipo = document.getElementById("tipo-usuario");
-
-     if(!input_nome || !input_email || !input_senha || !input_dt_nascimento || !input_tipo){
-        console.log("Inputs não encontrados")
-        return;
-    }
-
-    console.log(input_email)
-
-    let nome = input_nome.value;
-    let email = input_email.value;
-    let senha = input_senha.value;
-    let dt_nascimento = input_dt_nascimento.value;
-    let tipo = input_tipo.value;
-
-   fetch("http://localhost:1880/remove/usuario",{
-        method:"DELETE",
-        body:JSON.stringify({ nome,dt_nascimento,email,senha,tipo})
-    }).then((resposta)=>{
-        console.log(resposta)
-        if(resposta.ok){
-            resposta.json()
-        }
-
-    }).then((email)=>{
-        alert('Usuario Excluido!')
-    })
-})*/
 
 
 
