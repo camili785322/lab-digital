@@ -83,7 +83,6 @@ async function listarUsuario() {
         corpoTabela.innerHTML = ""; 
 
         
-
         usuarios.forEach(user => {
     const linha = document.createElement("tr");
 
@@ -112,31 +111,45 @@ async function listarUsuario() {
     }
 }
 
-
 // Altera Usuario 
 
 function prepararEdicao(user) {
     document.getElementById("nome-usuario").value = user.nome_completo;
     document.getElementById("email-usuario").value = user.email;
 
-    let date = user.dt_nascimento.split('T')
+    const campoSenha = document.getElementById("senha-usuario");
+    if (campoSenha) {
+        campoSenha.value = user.senha; 
+        campoSenha.disabled = true; 
+    }
 
+    let date = user.dt_nascimento.split('T');
     document.getElementById("dt_nascimento-usuario").value = date[0];
     document.getElementById("tipo-usuario").value = user.tipo;
-    
-}
+
     usuarioEmEdicao = user.email; 
 
     document.getElementById("btn-finalizar").innerText = "Salvar Alterações";
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
+}
 
 function resetarFormulario() {
     document.getElementById('form-usuario').reset();
+    
+    
+    const campoSenha = document.getElementById("senha-usuario");
+    if (campoSenha) {
+        campoSenha.disabled = false; 
+    }
+
     usuarioEmEdicao = null;
     document.getElementById("btn-finalizar").innerText = "Finalizar Cadastro";
 }
 
+function finalizarCadastroOuEdicao() {
+    document.getElementById("senha-usuario").disabled = false;
+    
+}
 
 // Exclui Usuario 
 

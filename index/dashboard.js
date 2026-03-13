@@ -1,10 +1,11 @@
-
+//guardam a memoria do meu script 
 let progressoAtivo = 0;
 let dadosPedido = { 
     cor: 'Azul',
     velocidade: 0      
 };
 
+// lista de atalhos 
 const dom = {
     revCor: document.getElementById('rev-cor'),    
     revVel: document.getElementById('rev-vel'),    
@@ -15,8 +16,8 @@ const dom = {
     msg: document.getElementById('msg-progresso')
 };
 
-// --- FUNÇÕES DE INTERFACE ---
 
+//controlam a parte visual e a navegação da sua interface
 function abrirModal(id) {
     document.getElementById(id).style.display = 'flex';
 }
@@ -34,10 +35,12 @@ function mudarPasso(passo) {
     document.querySelectorAll('.step-content-p').forEach(c => c.classList.remove('active'));
     document.getElementById(`step-${passo}`).classList.add('active');
     
+    //garante que mudei de aba 
     atualizarResumo();
 }
 
-// Seleção de Cor nos Cards
+
+//captura as escolhas do usuário
 document.querySelectorAll('.option-card-p').forEach(card => {
     card.addEventListener('click', function() {
         document.querySelectorAll('.option-card-p').forEach(c => c.classList.remove('selected'));
@@ -48,6 +51,7 @@ document.querySelectorAll('.option-card-p').forEach(card => {
     });
 });
 
+
 if (dom.slider) {
     dom.slider.addEventListener('input', function() {
         const valor = this.value;
@@ -57,19 +61,17 @@ if (dom.slider) {
     });
 }
 
+
 function atualizarResumo() {
     if (dom.revCor) dom.revCor.innerText = dadosPedido.cor;
     if (dom.revVel) dom.revVel.innerText = dadosPedido.velocidade;
 }
 
-// --- INTEGRAÇÃO COM NODE-RED ---
 
-// 1. Função para salvar a cor escolhida
-async function enviarCorAoNodeRed(corEscolhida) {
+//envia para o node red
+async function cor(corEscolhida) {
     const dados = {
         cor: corEscolhida,
-        status: "Iniciado",
-        timestamp: new Date().toISOString()
     };
 
     try {
@@ -87,12 +89,13 @@ async function enviarCorAoNodeRed(corEscolhida) {
     }
 }
 
-// 2. Finalizar Pedido e Iniciar Produção
+
+
 function finalizarPedido() {
     fecharModal('modalPedido');
     
-    // Salva a cor no Node-RED antes de começar
-    enviarCorAoNodeRed(dadosPedido.cor);
+   
+   cor(dadosPedido.cor);
 
     const statusIds = ['st-estoque', 'st-processo', 'st-montagem', 'st-expedicao'];
     statusIds.forEach(id => {
@@ -106,6 +109,7 @@ function finalizarPedido() {
     iniciarSimulacao();
 }
 
+//simulação analises
 function iniciarSimulacao() {
     progressoAtivo = 0;
     const intervalo = setInterval(() => {
@@ -117,10 +121,10 @@ function iniciarSimulacao() {
         if (progressoAtivo >= 100) {
             clearInterval(intervalo);
             
-            // Dados para a tabela Analises
+            
             const dadosAnalise = {
-                temp: (Math.random() * (28 - 24) + 24).toFixed(2), // Ex: 25.50
-                umid: (Math.random() * (70 - 60) + 60).toFixed(2),
+                temperatura: (Math.random() * (28 - 24) + 24).toFixed(2), 
+                umidade: (Math.random() * (70 - 60) + 60).toFixed(2),
                 tensao: 220.00,
                 corrente: 5.50
             };
@@ -130,6 +134,7 @@ function iniciarSimulacao() {
     }, 150);
 }
 
+//analises
 async function salvarAnalise(dados) {
     try {
         await fetch("http://localhost:1880/processo/analise", {
@@ -142,45 +147,26 @@ async function salvarAnalise(dados) {
         console.error("Erro ao salvar análises:", error);
     }
 }
-// 3. Cancelar Pedido e enviar motivo
-/*async function cancelarPedido() {
-    let motivo = prompt("Por qual motivo o pedido foi cancelado?");
 
-    if (motivo === null) return; 
+//cancelamento
+async function cancelarPedido() {
+    let motivo = prompt("Motivo do cancelamento:");
+    
+    if (!motivo?.trim()) return alert("Motivo obrigatório!");
 
-    if (motivo.trim() === "") {
-        alert("Por favor, informe um motivo para cancelar.");
-        return;
-    }*/
-
-
-fetch("http://localhost:1880/escolhe/cor", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ cor: "Azul" }) // O Node-RED lerá dados.cor
-});
-
-
-
-
-    /*try {
-        const resposta = await fetch("http://localhost:1880/pedido/cancela", {
-            method: "POST", 
+    try {
+        await fetch("http://localhost:1880/pedido/cancela", {
+            method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ 
-                status: "Cancelado",
-                justificativa: motivo,
-                cor: dadosPedido.cor,
-                data_hora: new Date().toISOString()
-            })
+            body: JSON.stringify({ motivo })
         });
-
-        if (resposta.ok) {
-            alert("Pedido cancelado e motivo registrado!");
-            location.reload(); 
-        }
-    } catch (error) {
-        console.error("Erro ao cancelar pedido:", error);
-        alert("Erro ao conectar ao Node-RED.");
+        
+        alert("Pedido cancelado com sucesso!");
+        
+        location.reload(); 
+    } catch (e) {
+        console.error("Erro:", e);
+        alert(" O cancelamento não foi registrado.");
     }
-}*/
+}
+

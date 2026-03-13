@@ -232,12 +232,9 @@ header h1 {
     backdrop-filter: blur(3px);
 }
 
-.modal-card-pedido, .modal-card {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 25px;
-    width: 450px;
-    box-shadow: var(--shadow-md);
+.modal-card-pedido {
+    position: relative; /* Importante para o botão obedecer este limite */
+    padding-top: 40px;  /* Espaço extra no topo para o botão não sobrepor o título */
 }
 
 .progress-bar-pedido {
@@ -300,4 +297,27 @@ header h1 {
     width: 0%;
     height: 100%;
     transition: 0.4s;
+}
+.btn-fechar-modal {
+    position: absolute;
+    top: 20px;    /* Distância do topo */
+    right: 20px;  /* Distância da direita */
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #666;
+    transition: all 0.2s;
+}
+
+.btn-fechar-modal:hover {
+    background-color: var(--danger-red);
+    color: white;
+    border-color: var(--danger-red);
 }
